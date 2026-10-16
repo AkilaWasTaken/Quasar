@@ -1,0 +1,71 @@
+.chapter-header {
+  text-align: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.chapter-header-logo {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 10px;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.25));
+}
+
+.chapter-header-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .chapter-header-logo {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 6px;
+  }
+
+  .chapter-header {
+    margin-bottom: 15px;
+  }
+
+  .chapter-header-title {
+    font-size: 20px;
+    letter-spacing: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapter-header {
+    margin-bottom: 12px;
+  }
+
+  .chapter-header-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .chapter-header-title {
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .chapter-header-logo {
+    display: none;
+  }
+
+  .chapter-header {
+    margin-bottom: 10px;
+  }
+
+  .chapter-header-title {
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+}

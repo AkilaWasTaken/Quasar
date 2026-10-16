@@ -1,0 +1,525 @@
+.camera-overlay {
+  position: fixed;
+  inset: var(--safe-area-top) var(--safe-area-right) var(--safe-area-bottom) var(--safe-area-left);
+  pointer-events: none;
+  z-index: var(--z-hud);
+  overflow: hidden;
+}
+
+.corner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.corner-tl {
+  top: 20px;
+  left: 20px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-tr {
+  top: 20px;
+  right: 20px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-bl {
+  bottom: 20px;
+  left: 20px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner-br {
+  bottom: 20px;
+  right: 20px;
+  border-left: none;
+  border-top: none;
+}
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+}
+
+.crosshair-h {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.crosshair-v {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.crosshair-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.hud-element {
+  position: absolute;
+  font-family: 'Share Tech Mono', monospace;
+  color: rgba(245, 240, 255, 0.92);
+  text-shadow: 0 0 6px rgba(186, 104, 255, 0.4);
+}
+
+.hud-top-left {
+  top: 35px;
+  left: 100px;
+}
+
+.hud-top-right {
+  top: 35px;
+  right: 100px;
+  text-align: right;
+}
+
+.hud-bottom-left {
+  bottom: 35px;
+  left: 100px;
+}
+
+.hud-bottom-right {
+  bottom: 35px;
+  right: 100px;
+  text-align: right;
+}
+
+.rec-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.rec-dot {
+  width: 10px;
+  height: 10px;
+  background: #ff3333;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff3333;
+  animation: recBlink 1.6s ease-in-out infinite;
+}
+
+@keyframes recBlink {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0.3; }
+}
+
+.rec-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ff3333;
+  letter-spacing: 2px;
+}
+
+.timecode {
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.date-display {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 5px;
+}
+
+.mode-display {
+  font-size: 11px;
+  color: rgba(203, 132, 255, 0.9);
+  letter-spacing: 2px;
+}
+
+.brand-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #fff;
+  text-shadow:
+    0 0 12px rgba(193, 116, 255, 0.75),
+    0 0 26px rgba(156, 81, 255, 0.55);
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 3px;
+  margin-top: 5px;
+}
+
+.chapter-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.chapter-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+.chapter-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.scroll-indicator {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scroll-track {
+  width: 2px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  position: relative;
+}
+
+.scroll-thumb {
+  position: absolute;
+  top: calc(var(--scroll-progress, 0) * 100%);
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.scroll-markers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+}
+
+.scroll-marker {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 1px;
+  transition: color 0.1s, text-shadow 0.1s;
+  pointer-events: auto;
+}
+
+.scroll-marker.active {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.scroll-marker:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.scroll-marker:focus-visible {
+  color: rgba(255, 255, 255, 0.95);
+  outline: 1px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
+.hud-enter {
+  animation: hudEnter var(--enter-duration, 0.8s) ease-out var(--enter-delay, 0s) both;
+}
+
+@keyframes hudEnter {
+  from {
+    opacity: 0;
+    translate: var(--enter-x, 0) var(--enter-y, 0);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: scrollHintPulse 2s ease-in-out infinite;
+}
+
+.scroll-hint-icon {
+  width: 22px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 11px;
+  position: relative;
+}
+
+.scroll-hint-wheel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  animation: scrollWheelMove 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollWheelMove {
+  0%, 100% { top: 6px; opacity: 1; }
+  50% { top: 16px; opacity: 0.3; }
+}
+
+.scroll-hint span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
+}
+
+@keyframes scrollHintPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes scrollHintPulseMobile {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--accent-rgb), 0.35) 50%, transparent 100%);
+  animation: scanDown 4s linear infinite;
+  opacity: 0.35;
+}
+
+@keyframes scanDown {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.28;
+}
+
+.camera-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+@media (max-width: 768px) {
+  .corner {
+    width: 40px;
+    height: 40px;
+  }
+
+  .corner-tl { top: 12px; left: 12px; }
+  .corner-tr { top: 12px; right: 12px; }
+  .corner-bl { bottom: 12px; left: 12px; }
+  .corner-br { bottom: 12px; right: 12px; }
+
+  .hud-top-left { top: 20px; left: 65px; }
+  .hud-top-right { top: 20px; right: 65px; }
+  .hud-bottom-left { bottom: 20px; left: 65px; }
+  .hud-bottom-right { bottom: 20px; right: 65px; }
+
+  .rec-text { font-size: 10px; }
+  .timecode { font-size: 12px; }
+  .date-display { font-size: 10px; }
+  .mode-display { font-size: 9px; }
+
+  .brand-name {
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+  .brand-sub {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .chapter-label { font-size: 9px; letter-spacing: 1px; }
+  .chapter-name { font-size: 11px; letter-spacing: 2px; }
+
+  .scroll-indicator {
+    right: 15px;
+    gap: 8px;
+  }
+
+  .scroll-track {
+    height: 140px;
+  }
+
+  .scroll-markers {
+    height: 140px;
+  }
+
+  .scroll-marker {
+    font-size: 9px;
+  }
+
+  .scroll-hint {
+    bottom: 70px;
+    animation: scrollHintPulseMobile 1.8s ease-in-out infinite;
+  }
+
+  .scroll-hint-icon {
+    width: 20px;
+    height: 32px;
+    border-color: rgba(255, 255, 255, 0.82);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.28);
+  }
+
+  .scroll-hint-wheel {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.55);
+  }
+
+  .scroll-hint span {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.86);
+    letter-spacing: 1.2px;
+    text-shadow:
+      0 1px 7px rgba(0, 0, 0, 0.8),
+      0 0 10px rgba(var(--accent-rgb), 0.28);
+  }
+
+  .crosshair {
+    width: 30px;
+    height: 30px;
+  }
+
+  .crosshair-h { width: 30px; }
+  .crosshair-v { height: 30px; }
+
+  .grid-overlay {
+    background-size: 40px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hud-top-left { top: 18px; left: 55px; }
+  .hud-top-right { top: 18px; right: 55px; }
+  .hud-bottom-left { bottom: 18px; left: 55px; }
+  .hud-bottom-right { bottom: 18px; right: 55px; }
+
+  .brand-name {
+    font-size: 14px;
+    letter-spacing: 3px;
+  }
+
+  .chapter-name { font-size: 10px; letter-spacing: 1px; }
+
+  .scroll-indicator {
+    right: 10px;
+  }
+
+  .scroll-track {
+    width: 3px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.22);
+  }
+
+  .scroll-thumb {
+    left: -4.5px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    box-shadow:
+      0 0 12px rgba(255, 255, 255, 0.65),
+      0 0 18px rgba(var(--accent-rgb), 0.45);
+  }
+
+  .scroll-markers {
+    display: none;
+  }
+
+  .scroll-hint {
+    bottom: 65px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .corner { width: 30px; height: 30px; }
+
+  .corner-tl { top: 8px; left: 50px; }
+  .corner-tr { top: 8px; right: 50px; }
+  .corner-bl { bottom: 8px; left: 50px; }
+  .corner-br { bottom: 8px; right: 50px; }
+
+  .hud-top-left { top: 12px; left: 90px; }
+  .hud-top-right { top: 12px; right: 90px; }
+  .hud-bottom-left { bottom: 12px; left: 90px; }
+  .hud-bottom-right { bottom: 12px; right: 90px; }
+
+  .brand-name { font-size: 12px; letter-spacing: 2px; }
+  .brand-sub { font-size: 9px; }
+
+  .scroll-indicator { right: 40px; }
+  .scroll-track { height: 80px; }
+  .scroll-markers { display: none; }
+
+  .scroll-hint { display: none; }
+
+  .crosshair { display: none; }
+  .grid-overlay { display: none; }
+}

@@ -1,0 +1,46 @@
+.chapter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: var(--z-chapter);
+  font-family: 'Syne', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: calc(70px + var(--safe-area-top));
+  padding-bottom: calc(70px + var(--safe-area-bottom));
+  padding-left: calc(30px + var(--safe-area-left));
+  padding-right: calc(30px + var(--safe-area-right));
+}
+
+.chapter-overlay[hidden] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .chapter-overlay {
+    padding: 72px 20px 70px;
+    padding-top: calc(72px + var(--safe-area-top));
+    padding-bottom: calc(70px + var(--safe-area-bottom));
+  }
+}
+
+@media (max-width: 480px) {
+  .chapter-overlay {
+    padding: 68px 18px 66px;
+    padding-top: calc(68px + var(--safe-area-top));
+    padding-bottom: calc(66px + var(--safe-area-bottom));
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .chapter-overlay {
+    padding: 30px 50px;
+    padding-left: calc(50px + var(--safe-area-left));
+    padding-right: calc(50px + var(--safe-area-right));
+  }
+}

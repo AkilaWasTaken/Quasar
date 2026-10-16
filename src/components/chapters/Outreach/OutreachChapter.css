@@ -1,0 +1,195 @@
+.outreach-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 6px;
+}
+
+.outreach-events {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: 14px;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-width: 920px;
+  width: 100%;
+  overflow-y: auto;
+  padding: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.outreach-events::-webkit-scrollbar {
+  width: 6px;
+}
+
+.outreach-events::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
+.outreach-event {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  background: var(--surface-bg);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--surface-radius);
+  overflow: hidden;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.outreach-event:focus-visible {
+  border-color: var(--surface-border-hover);
+  outline: none;
+}
+
+@media (hover: hover) {
+  .outreach-event:hover {
+    transform: translateY(-4px);
+    border-color: var(--surface-border-hover);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .outreach-event:hover .outreach-event-photo {
+    transform: scale(1.06);
+  }
+}
+
+.outreach-event-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.outreach-event-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(4, 6, 10, 0.88) 100%);
+  pointer-events: none;
+}
+
+.outreach-event-title {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 9px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2px;
+  line-height: 1.28;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.outreach-modal-card {
+  width: min(480px, 100%);
+  padding: 26px 26px 29px;
+}
+
+.outreach-modal-card .modal-close {
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.outreach-modal-card .modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.outreach-modal-photo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.outreach-modal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.outreach-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.outreach-modal-title {
+  font-size: clamp(19px, 3vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.outreach-modal-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.4), transparent);
+  margin: 10px 0 6px;
+}
+
+.outreach-modal-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .outreach-content {
+    padding: 0;
+    justify-content: flex-start;
+  }
+
+  .outreach-events {
+    padding: 10px 2px 26px;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10px, #000 calc(100% - 26px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 10px, #000 calc(100% - 26px), transparent 100%);
+  }
+
+  .outreach-events::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .outreach-events {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .outreach-event-title {
+    font-size: 11px;
+  }
+
+  .outreach-modal-card {
+    padding: 21px 19px 24px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .outreach-events {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
