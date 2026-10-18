@@ -15,7 +15,7 @@ const createRenderer = (width: number, height: number): THREE.WebGLRenderer | nu
       powerPreference: 'high-performance'
     })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    renderer.setSize(width, height)
+    renderer.setSize(width, height, false)
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.2
     renderer.outputColorSpace = THREE.SRGBColorSpace
@@ -70,17 +70,18 @@ export const useThreeScene = () => {
         const height = mount.clientHeight
         if (width === 0 || height === 0) return
 
-        renderer?.setSize(width, height)
+        renderer?.setSize(width, height, false)
         camera.aspect = width / height
 
         camera.updateProjectionMatrix()
       }, 100)
     }
 
-    window.addEventListener('resize', handleResize)
+    const resizeObserver = new ResizeObserver(handleResize)
+    resizeObserver.observe(mount)
 
     return () => {
-      window.removeEventListener('resize', handleResize)
+      resizeObserver.disconnect()
       clearTimeout(resizeTimeout)
       setSceneObjects(null)
       if (renderer) {
